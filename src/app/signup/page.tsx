@@ -15,7 +15,7 @@ export default function Signup() {
       const res = await fetch(`${base}/v1/dev-keys`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ owner_email: email })
       });
       const data = await res.json();
       if (data?.api_key) setKey(data.api_key);
