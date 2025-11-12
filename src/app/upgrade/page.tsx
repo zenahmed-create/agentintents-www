@@ -1,5 +1,5 @@
-'use client';
-import { useState } from 'react';
+"use client";
+import { useState } from "react";
 
 export default function Upgrade() {
   // State management for loading and error handling
@@ -11,17 +11,17 @@ export default function Upgrade() {
     setErr(null);
     try {
       // 📖 Read the API key that was saved during signup
-      const apiKey = localStorage.getItem('ai_api_key');
+      const apiKey = localStorage.getItem("ai_api_key");
       if (!apiKey) {
-        setErr('No API key found. Please create a key on the signup page first.');
+        setErr("No API key found. Please create a key on the signup page first.");
         return;
       }
 
       const base = process.env.NEXT_PUBLIC_API_BASE!; // https://api.agentintents.com
       const res = await fetch(`${base}/v1/billing/checkout`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
           Authorization: `Bearer ${apiKey}`,  // ← REQUIRED: Authenticate with API key
         },
       });
@@ -30,15 +30,19 @@ export default function Upgrade() {
       
       // Check if the request was successful
       if (!res.ok) {
-        setErr(data?.error || 'Failed to start checkout.');
+        setErr(data?.error || "Failed to start checkout.");
         return;
       }
       
       // Redirect to Stripe Checkout
       window.location.href = data.url;
-    } catch (e: any) {
+    } catch (error: unknown) {
       // Handle network errors or unexpected failures
-      setErr(e?.message || 'Network error');
+      if (error instanceof Error) {
+        setErr(error.message);
+      } else {
+        setErr("Network error");
+      }
     } finally {
       // Always reset loading state
       setLoading(false);
@@ -46,7 +50,7 @@ export default function Upgrade() {
   }
 
   return (
-    <main className="min-h-screen grid place-items-center">
+    <main className="grid min-h-screen place-items-center">
       <div className="w-full max-w-md px-6">
         <h1 className="text-2xl font-semibold">Developer Plan — $5/mo</h1>
         <p className="mt-3 text-zinc-600">
@@ -57,10 +61,10 @@ export default function Upgrade() {
           disabled={loading}
           className="mt-6 w-full rounded-md bg-black px-4 py-2 text-white hover:opacity-90 disabled:opacity-50"
         >
-          {loading ? 'Redirecting…' : 'Upgrade via Stripe'}
+          {loading ? "Redirecting…" : "Upgrade via Stripe"}
         </button>
         <p className="mt-3 text-xs text-zinc-500">
-          You'll be redirected to Stripe Checkout. After payment, you'll return to our site.
+          You&apos;ll be redirected to Stripe Checkout. After payment, you&apos;ll return to our site.
         </p>
         {err && <p className="mt-3 text-sm text-red-600">{err}</p>}
       </div>
