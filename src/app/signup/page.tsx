@@ -18,8 +18,12 @@ export default function Signup() {
         body: JSON.stringify({ owner_email: email })
       });
       const data = await res.json();
-      if (data?.api_key) setKey(data.api_key);   // 👈 now matches backend
-      else alert(data?.error || 'Failed to create API key');
+      if (data?.api_key) {
+        setKey(data.api_key);
+        localStorage.setItem('ai_api_key', data.api_key);  // 💾 Persist for Upgrade page
+      } else {
+        alert(data?.error || 'Failed to create API key');
+      }
     } finally {
       setLoading(false);
     }
