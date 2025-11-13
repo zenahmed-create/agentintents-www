@@ -33,12 +33,31 @@ export function SiteHeader() {
         <div className="flex items-center gap-3">
           <SecondaryCtaButton href="/signup" label="Log in" className="hidden md:inline-flex" />
           <PrimaryCtaButton href="/signup" label="Get your API key →" className="hidden md:inline-flex" />
-          <Link
-            href="/signup"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-zinc-200 text-sm font-medium md:hidden"
-          >
-            Menu
-          </Link>
+          <details className="relative md:hidden">
+            <summary className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-md border border-zinc-200 text-sm font-medium dark:border-zinc-700">
+              ☰
+            </summary>
+            <div className="absolute right-0 mt-3 w-48 rounded-2xl border border-zinc-200 bg-white p-4 text-sm shadow-lg dark:border-zinc-700 dark:bg-zinc-900">
+              <nav className="flex flex-col gap-3">
+                {navigation.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="transition hover:text-zinc-900 dark:hover:text-white"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+                <Link
+                  href="/signup"
+                  className="rounded-md border border-zinc-200 px-3 py-2 text-center font-medium transition hover:bg-zinc-50 dark:border-zinc-700 dark:hover:bg-zinc-800"
+                >
+                  Log in
+                </Link>
+                <PrimaryCtaButton href="/signup" label="Get your API key →" className="w-full justify-center" />
+              </nav>
+            </div>
+          </details>
         </div>
       </div>
     </header>

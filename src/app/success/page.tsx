@@ -1,4 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Upgrade Successful",
+  description: "Your AgentIntents Developer plan is active. Access 50,000 monthly events and advanced workflows.",
+  alternates: {
+    canonical: "https://agentintents.com/success",
+  },
+};
 
 export default function Success() {
   return (

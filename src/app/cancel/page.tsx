@@ -1,4 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Checkout Cancelled",
+  description: "Your upgrade was cancelled. Continue on the free tier or restart checkout when you’re ready.",
+  alternates: {
+    canonical: "https://agentintents.com/cancel",
+  },
+};
 
 export default function Cancel() {
   return (
