@@ -34,7 +34,7 @@ export function SiteHeader() {
           <SecondaryCtaButton href="/signup" label="Log in" className="hidden md:inline-flex" />
           <PrimaryCtaButton href="/signup" label="Get your API key →" className="hidden md:inline-flex" />
           <details className="relative md:hidden">
-            <summary className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-md border border-zinc-200 text-sm font-medium dark:border-zinc-700">
+            <summary className="inline-flex h-10 w-10 list-none cursor-pointer items-center justify-center rounded-md border border-zinc-200 text-sm font-medium dark:border-zinc-700 [&::-webkit-details-marker]:hidden">
               ☰
             </summary>
             <div className="absolute right-0 mt-3 w-48 rounded-2xl border border-zinc-200 bg-white p-4 text-sm shadow-lg dark:border-zinc-700 dark:bg-zinc-900">
