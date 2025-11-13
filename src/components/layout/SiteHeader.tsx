@@ -30,7 +30,7 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center justify-end gap-3">
           <SecondaryCtaButton href="/signup" label="Log in" className="hidden md:inline-flex" />
           <PrimaryCtaButton href="/signup" label="Get your API key →" className="hidden md:inline-flex" />
           <details className="relative md:hidden">
